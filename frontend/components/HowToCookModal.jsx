@@ -41,12 +41,23 @@ export default function HowToCookModal() {
 
     return (
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-            <DialogTrigger asChild>
-                <span className="hover:text-orange-600 transition-colors flex items-center gap-1.5 text-sm font-medium text-stone-600 cursor-pointer">
-                    <ChefHat className="w-4 h-4" />
-                    How to Cook?
-                </span>
-            </DialogTrigger>
+            <DialogTrigger
+                nativeButton={false}
+                render={(props) => (
+                    <span
+                        {...props}
+                        className={[
+                            "hover:text-orange-600 transition-colors flex items-center gap-1.5 text-sm font-medium text-stone-600 cursor-pointer",
+                            props.className,
+                        ]
+                            .filter(Boolean)
+                            .join(" ")}
+                    >
+                        <ChefHat className="w-4 h-4" />
+                        How to Cook?
+                    </span>
+                )}
+            />
 
             <DialogContent className="max-w-lg">
                 <DialogHeader>

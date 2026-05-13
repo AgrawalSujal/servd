@@ -17,9 +17,30 @@ export default function PricingModal({ subscriptionTier = "free", children }) {
 
     return (
         <Dialog open={isOpen} onOpenChange={canOpen ? setIsOpen : undefined}>
-            <DialogTrigger asChild disabled={!canOpen}>
-                {children}
-            </DialogTrigger>
+            <DialogTrigger
+                disabled={!canOpen}
+                nativeButton={false}
+                render={(props) => {
+                    if (React.isValidElement(children)) {
+                        const childClassName = children.props?.className;
+                        return React.cloneElement(children, {
+                            ...props,
+                            className: [props.className, childClassName]
+                                .filter(Boolean)
+                                .join(" "),
+                        });
+                    }
+
+                    return (
+                        <span
+                            {...props}
+                            className={[props.className].filter(Boolean).join(" ")}
+                        >
+                            {children}
+                        </span>
+                    );
+                }}
+            />
 
             <DialogContent className="p-8 pt-4 sm:max-w-4xl">
                 <DialogTitle />
