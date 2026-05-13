@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import RecipeGrid from "@/components/RecipeGrid";
-import { getMealsByArea } from "@/actions/mealdb.actions";
+import { getMealsByArea } from "@/actions/mealdb.action";
 
 export default function CuisineRecipesPage() {
     const params = useParams();
